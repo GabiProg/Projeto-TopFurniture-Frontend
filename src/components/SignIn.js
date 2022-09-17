@@ -15,18 +15,17 @@ export default function SignIn() {
   function EnviarCadastro(e) {
     e.preventDefault();
 
-    const URL = "https://back-project-topfurniture.herokuapp.com/sign-up";
-
     const body = {
-      name,
-      email,
-      password,
-      passwordConfirm,
+      name: name,
+      email: email,
+      password: password,
+      passwordConfirm: passwordConfirm,
     };
 
-    const promise = axios.post(URL, body);
+    const promise = axios.post("https://back-project-topfurniture.herokuapp.com/sign-in", body);
     promise.then((res) => {
       navigate("/");
+      alert('Usuário Cadastrado com sucesso')
     });
     promise.catch((err) => {
       alert("Falha ao fazer o cadastro.");
@@ -39,8 +38,9 @@ export default function SignIn() {
         <Logo>
           <p>Top</p>
           <h1>Forniture</h1>
-          <img src={IMG} alt='Logo do Top Furniture' />
+          <img src={IMG} alt="Logo do Top Furniture" />
         </Logo>
+
         <form onSubmit={EnviarCadastro}>
           <input
             placeholder="Nome"
@@ -64,16 +64,18 @@ export default function SignIn() {
           />
           <input
             type="password"
-            placeholder="Comfirme a senha"
+            placeholder="Confirme a senha"
             value={passwordConfirm}
             onChange={(e) => setPasswordConfirm(e.target.value)}
             required
           />
           <button type="submit">Entrar</button>
         </form>
+
         <Link to="/">
           <h2>Já tem uma conta? Entre agora!</h2>
         </Link>
+
         <Fixed>
           featured by Gabriela Teresa <br />
           and Gustavo Alves
@@ -93,6 +95,13 @@ const Center = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 
   input {
     height: 58px;
@@ -129,7 +138,11 @@ const Center = styled.div`
     font-weight: 600;
     font-family: "Raleway";
     font-size: 16px;
-    padding-top: 30px;
+    padding-top: 20px;
+    text-decoration: none;
+  }
+
+  a {
     text-decoration: none;
   }
 `;
@@ -145,7 +158,7 @@ const Logo = styled.div`
     font-size: 50px;
     padding-left: 40px;
     color: #e1bb69;
-    margin-top: 80px;
+    margin-top: 10px;
     margin-bottom: 5px;
   }
 
@@ -157,8 +170,8 @@ const Logo = styled.div`
 `;
 const Fixed = styled.div`
   font-family: "Raleway";
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
-  margin-top: 100px;
+  margin-top: 5px;
   color: #808080;
 `;

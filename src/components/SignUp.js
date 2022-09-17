@@ -17,7 +17,7 @@ export default function SignUp() {
 
     const body = {
       email,
-      password
+      password,
     };
 
     const promise = axios.post(URL, body);
@@ -25,6 +25,7 @@ export default function SignUp() {
       const { data } = res;
       localStorage.setItem("infoToken", JSON.stringify(data.token));
       navigate("/home");
+      alert('Bem-vindo')
     });
     promise.catch((err) => {
       alert("Falha ao fazer o Login.");
@@ -79,6 +80,13 @@ const Center = styled.div`
   justify-content: center;
   flex-direction: column;
 
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
   input {
     height: 58px;
     width: 300px;
@@ -115,6 +123,10 @@ const Center = styled.div`
     font-family: "Raleway";
     font-size: 16px;
     padding-top: 30px;
+    text-decoration: none;
+  }
+
+  a {
     text-decoration: none;
   }
 `;
