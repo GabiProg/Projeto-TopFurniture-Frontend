@@ -1,21 +1,76 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import IMG from "../assets/2361657.png";
 import styled from "styled-components";
+import { useState } from "react";
+import axios from "axios";
 
 export default function SignIn() {
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [passwordConfirm, setPasswordConfirm] = useState();
+
+  const navigate = useNavigate();
+
+  function EnviarCadastro(e) {
+    e.preventDefault();
+
+    const URL = "https://back-project-topfurniture.herokuapp.com/sign-up";
+
+    const body = {
+      name,
+      email,
+      password,
+      passwordConfirm,
+    };
+
+    const promise = axios.post(URL, body);
+    promise.then((res) => {
+      navigate("/");
+    });
+    promise.catch((err) => {
+      alert("Falha ao fazer o cadastro.");
+    });
+  }
+
   return (
     <Conteiner>
       <Center>
         <Logo>
           <p>Top</p>
           <h1>Forniture</h1>
-          <img src={IMG} />
+          <img src={IMG} alt='Logo do Top Furniture' />
         </Logo>
-        <input placeholder="Nome" />
-        <input type="email" placeholder="E-mail" />
-        <input type="password" placeholder="Senha" />
-        <input type="password" placeholder="Comfirme a senha" />
-        <button>Entrar</button>
+        <form onSubmit={EnviarCadastro}>
+          <input
+            placeholder="Nome"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Comfirme a senha"
+            value={passwordConfirm}
+            onChange={(e) => setPasswordConfirm(e.target.value)}
+            required
+          />
+          <button type="submit">Entrar</button>
+        </form>
         <Link to="/">
           <h2>Já tem uma conta? Entre agora!</h2>
         </Link>
@@ -75,6 +130,7 @@ const Center = styled.div`
     font-family: "Raleway";
     font-size: 16px;
     padding-top: 30px;
+    text-decoration: none;
   }
 `;
 const Logo = styled.div`

@@ -1,21 +1,63 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
 import IMG from "../assets/2361657.png";
+import styled from "styled-components";
+import { useState } from "react";
+import axios from "axios";
 
 export default function SignUp() {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const navigate = useNavigate();
+
+  function Logar(e) {
+    e.preventDefault();
+
+    const URL = "https://back-project-topfurniture.herokuapp.com/";
+
+    const body = {
+      email,
+      password
+    };
+
+    const promise = axios.post(URL, body);
+    promise.then((res) => {
+      const { data } = res;
+      localStorage.setItem("infoToken", JSON.stringify(data.token));
+      navigate("/home");
+    });
+    promise.catch((err) => {
+      alert("Falha ao fazer o Login.");
+    });
+  }
+
   return (
     <Conteiner>
       <Center>
         <Logo>
           <p>Top</p>
           <h1>Forniture</h1>
-          <img src={IMG} />
+          <img src={IMG} alt="Logo do Top Furniture" />
         </Logo>
-        <input type="email" placeholder="E-mail" />
-        <input type="password" placeholder="Senha" />
-        <button>Entrar</button>
-        <Link to='/sign-in'>
-            <h2>Primeira vez? Cadastre-se!</h2>
+        <form onSubmit={Logar}>
+          <input
+            type="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Entrar</button>
+        </form>
+        <Link to="/sign-in">
+          <h2>Primeira vez? Cadastre-se!</h2>
         </Link>
         <Fixed>
           featured by Gabriela Teresa <br />
@@ -59,7 +101,7 @@ const Center = styled.div`
     border-radius: 5px;
     margin-top: 13px;
     color: #fff;
-    font-family: 'Raleway';
+    font-family: "Raleway";
     font-size: 20px;
     font-weight: 700;
     display: flex;
@@ -70,9 +112,10 @@ const Center = styled.div`
   h2 {
     color: #c49b44;
     font-weight: 600;
-    font-family: 'Raleway';
+    font-family: "Raleway";
     font-size: 16px;
     padding-top: 30px;
+    text-decoration: none;
   }
 `;
 const Logo = styled.div`
@@ -98,7 +141,7 @@ const Logo = styled.div`
   }
 `;
 const Fixed = styled.div`
- font-family: 'Raleway';
+  font-family: "Raleway";
   font-size: 10px;
   font-weight: 700;
   margin-top: 100px;
