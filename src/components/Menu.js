@@ -3,9 +3,10 @@ import Header from "./Header";
 import ListProducts from "./ListProducts";
 import UserContext from "../Context/UserContext";
 import { useContext } from "react";
+import { useEffect } from "react";
 
 export default function Menu() {
-  const {user} = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <>
@@ -40,13 +41,13 @@ const Topic = styled.div`
   justify-content: space-around;
   padding-top: 100px;
 
-h2 {
+  h2 {
     font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-size: 18px;
     padding-left: 10px;
-    color: #BA8A23
-}
+    color: #ba8a23;
+  }
 `;
 
 const Products = styled.div`
@@ -65,44 +66,11 @@ const Box = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   margin-top: 30px;
-`;
 
-const Card = styled.div`
-  height: 220px;
-  width: 150px;
-  margin-bottom: 20px;
-  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
-
-  img {
-    width: 100%;
-    height: 100px;
-    border-radius: 5px;
-  }
-
-  p {
+  h3 {
+    padding-top: 50px;
+    padding-left: 15px;
     font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    color: #808080;
-  }
-
-  div {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-  }
-
-  h4 {
-    padding-top: 15px;
-    font-size: 17px;
-    color: black;
-    font-family: "Poppins", sans-serif;
-    margin-bottom: 20px;
-  }
-
-  ion-icon {
-    font-size: 22px;
-    padding-top: 13px;
+    font-weight: 700;
   }
 `;

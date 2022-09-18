@@ -13,7 +13,7 @@ export default function Header() {
         </div>
         <div>
           <ion-icon onClick={() => Navigate('/home')} name="home-outline"></ion-icon>
-          <ion-icon name="cart-outline"></ion-icon>
+          <ion-icon  onClick={() => Navigate('/cart')} name="cart-outline"></ion-icon>
           <ion-icon name="log-out-outline"></ion-icon>
         </div>
       </Top>

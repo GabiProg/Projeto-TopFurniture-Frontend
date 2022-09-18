@@ -4,10 +4,13 @@ import axios from "axios";
 import UserContext from "../Context/UserContext";
 
 export default function ListProducts() {
-  const { data, setData} = useContext(UserContext);
+  const { data, setData, cart } =
+    useContext(UserContext);
 
   useEffect(() => {
-    const promisse = axios.get(`https://back-project-topfurniture.herokuapp.com/home`);
+    const promisse = axios.get(
+      `https://back-project-topfurniture.herokuapp.com/home`
+    );
     promisse.then((res) => {
       setData(res.data);
     });
@@ -15,6 +18,26 @@ export default function ListProducts() {
   }, []);
 
   function List(props) {
+    function Add() {
+
+      const confirm = window.confirm('Deseja adicionar o Produto ao carrinho?')
+
+      if(confirm) {
+        const Product =
+        {
+          "Produto": `${props.description}`,
+          "Valor": `${props.value}`,
+          "group": `${props.group}`
+        }
+      ;
+      cart.push(Product);
+      } else {
+        setTimeout(() => {
+          window.location.reload(true)
+        }, 500);
+      }
+    }
+
     return (
       <>
         <Card>
@@ -22,7 +45,10 @@ export default function ListProducts() {
           <p>{props.description}</p>
           <div>
             <h4>{props.value}R$</h4>
-            <ion-icon class="adicty" name="add-circle-outline"></ion-icon>
+            <ion-icon
+              onClick={() => Add()}
+              name="add-circle-outline"
+            ><span>Clique duas vezes para adicionar produto ao carrinho</span></ion-icon>
           </div>
         </Card>
       </>
@@ -31,16 +57,19 @@ export default function ListProducts() {
 
   return (
     <>
-      {data.length > 0
-        ? data.map((item, index) => (
-            <List
-              key={index}
-              image={item.image}
-              description={item.description}
-              value={item.value}
-            />
-          ))
-        : <h3>Atualize a Página</h3>}
+      {data.length > 0 ? (
+        data.map((item, index) => (
+          <List
+            key={index}
+            image={item.image}
+            description={item.description}
+            value={item.value}
+            group={item.group}
+          />
+        ))
+      ) : (
+        <h3>Atualize a Página</h3>
+      )}
     </>
   );
 }
@@ -86,5 +115,6 @@ const Card = styled.div`
   ion-icon {
     font-size: 22px;
     padding-top: 13px;
+    cursor: pointer;
   }
 `;
