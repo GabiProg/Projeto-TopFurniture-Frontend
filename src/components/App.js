@@ -46,9 +46,9 @@ export default function App() {
       >
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<SignUp />} />
+            <Route path="/sign-up" element={<SignUp />} />
             <Route path="/sign-in" element={<SignIn />} />
-            <Route path="/home" element={<Menu />} />
+            <Route path="/" element={<Menu />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/success" element={<Success />} />
           </Routes>

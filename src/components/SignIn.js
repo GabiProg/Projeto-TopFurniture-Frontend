@@ -22,10 +22,13 @@ export default function SignIn() {
       passwordConfirm: passwordConfirm,
     };
 
-    const promise = axios.post("https://top-forniture.herokuapp.com/sign-in", body);
+    const promise = axios.post(
+      "https://topfurniture.herokuapp.com/sign-in",
+      body
+    );
     promise.then((res) => {
       navigate("/");
-      alert('Usuário Cadastrado com sucesso')
+      alert("Usuário Cadastrado com sucesso");
     });
     promise.catch((err) => {
       alert("Falha ao fazer o cadastro.");
@@ -35,6 +38,10 @@ export default function SignIn() {
   return (
     <Conteiner>
       <Center>
+        <Top>
+          <ion-icon onClick={() => navigate('/')} name="arrow-back-circle-outline"></ion-icon>
+        </Top>
+
         <Logo>
           <p>Top</p>
           <h1>Forniture</h1>
@@ -174,4 +181,17 @@ const Fixed = styled.div`
   font-weight: 700;
   margin-top: 5px;
   color: #808080;
+`;
+
+const Top = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 30px;
+
+  ion-icon {
+    font-size: 33px;
+    padding-left: 10px;
+    padding-top: 10px;
+  }
 `;

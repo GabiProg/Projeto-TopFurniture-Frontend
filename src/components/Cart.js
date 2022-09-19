@@ -55,11 +55,11 @@ export default function Cart() {
       value: total,
     };
 
-    // const URL = "https://back-project-topfurniture.herokuapp.com/cart";
-    // const promise = axios.post(URL, body);
-    // promise.then(() => {
-    //   alert("Compra realizada");
-    // });
+     const URL = "https://topfurniture.herokuapp.com/cart";
+    const promise = axios.post(URL, body);
+    promise.then(() => {
+      alert("Compra realizada");
+    });
     setCode(codigo)
     Navigate('/success')
   }

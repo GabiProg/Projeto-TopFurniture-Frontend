@@ -9,7 +9,7 @@ export default function ListProducts() {
 
   useEffect(() => {
     const promisse = axios.get(
-      `https://top-forniture.herokuapp.com/home`
+      `https://topfurniture.herokuapp.com/home`
     );
     promisse.then((res) => {
       setData(res.data);

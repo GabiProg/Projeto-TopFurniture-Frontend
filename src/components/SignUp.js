@@ -13,7 +13,7 @@ export default function SignUp() {
   function Logar(e) {
     e.preventDefault();
 
-    const URL = "https://top-forniture.herokuapp.com/sign-up";
+    const URL = "https://topfurniture.herokuapp.com/sign-up";
 
     const body = {
       email,
@@ -25,7 +25,7 @@ export default function SignUp() {
       const { data } = res;
       localStorage.setItem("infoToken", JSON.stringify(data.token));
       navigate("/home");
-      alert('Bem-vindo')
+      alert("Bem-vindo");
     });
     promise.catch((err) => {
       alert("Falha ao fazer o Login.");
@@ -35,6 +35,13 @@ export default function SignUp() {
   return (
     <Conteiner>
       <Center>
+        <Top>
+          <ion-icon
+            onClick={() => navigate("/")}
+            name="arrow-back-circle-outline"
+          ></ion-icon>
+        </Top>
+
         <Logo>
           <p>Top</p>
           <h1>Forniture</h1>
@@ -158,4 +165,17 @@ const Fixed = styled.div`
   font-weight: 700;
   margin-top: 100px;
   color: #808080;
+`;
+
+const Top = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 30px;
+
+  ion-icon {
+    font-size: 33px;
+    padding-left: 10px;
+    padding-top: 10px;
+  }
 `;

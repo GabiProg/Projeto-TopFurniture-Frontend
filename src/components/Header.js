@@ -14,7 +14,7 @@ export default function Header() {
         <div>
           <ion-icon onClick={() => Navigate('/home')} name="home-outline"></ion-icon>
           <ion-icon  onClick={() => Navigate('/cart')} name="cart-outline"></ion-icon>
-          <ion-icon name="log-out-outline"></ion-icon>
+          <ion-icon  onClick={() => Navigate('sign-up')}name="person-circle-outline"></ion-icon>
         </div>
       </Top>
     </>

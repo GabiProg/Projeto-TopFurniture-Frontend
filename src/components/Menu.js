@@ -14,7 +14,7 @@ export default function Menu() {
         <Header />
 
         <Topic>
-          <h2>Olá {user}, Escolha já o melhor móvel para sua casa!</h2>
+          <h2>Olá, Escolha já o melhor móvel para sua casa!</h2>
         </Topic>
 
         <Products>
