@@ -6,6 +6,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Menu from "./Menu";
 import Cart from "./Cart";
+import Success from "./Success";
 
 export default function App() {
   const [data, setData] = useState([]);
@@ -16,6 +17,8 @@ export default function App() {
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
   const [products, setProducts] = useState([])
+  const [code, setCode] = useState()
+
 
   return (
     <>
@@ -36,7 +39,9 @@ export default function App() {
           cpf,
           setCpf,
           products, 
-          setProducts
+          setProducts,
+          code,
+          setCode
         }}
       >
         <BrowserRouter>
@@ -45,6 +50,7 @@ export default function App() {
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/home" element={<Menu />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/success" element={<Success />} />
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

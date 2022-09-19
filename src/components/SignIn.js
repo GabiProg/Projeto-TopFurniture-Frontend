@@ -22,7 +22,7 @@ export default function SignIn() {
       passwordConfirm: passwordConfirm,
     };
 
-    const promise = axios.post("https://back-project-topfurniture.herokuapp.com/sign-in", body);
+    const promise = axios.post("https://top-forniture.herokuapp.com/sign-in", body);
     promise.then((res) => {
       navigate("/");
       alert('Usuário Cadastrado com sucesso')

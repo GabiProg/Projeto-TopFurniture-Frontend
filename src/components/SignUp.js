@@ -13,7 +13,7 @@ export default function SignUp() {
   function Logar(e) {
     e.preventDefault();
 
-    const URL = "https://back-project-topfurniture.herokuapp.com/";
+    const URL = "https://top-forniture.herokuapp.com/sign-up";
 
     const body = {
       email,

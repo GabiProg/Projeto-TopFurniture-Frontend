@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { useEffect, useContext, useState } from "react";
 import axios from "axios";
+import { v4 as uuid } from 'uuid';
 import UserContext from "../Context/UserContext";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
-  const { cart, total, setTotal, name, setName, cpf, setCpf, products } =
+  const { cart, total, setTotal, name, setName, cpf, setCpf, products, setCode } =
     useContext(UserContext);
   let sum = 0;
   const Navigate = useNavigate()
@@ -38,6 +39,7 @@ export default function Cart() {
   function HandleSubmit(e) {
     e.preventDefault()
     const filter = cart.filter((i) => i.group === "Movel");
+    const codigo = uuid()
     for (let i = 0; i < filter.length; i++) {
       const produtos = {
         Produtos: filter[i].Produto,
@@ -53,11 +55,13 @@ export default function Cart() {
       value: total,
     };
 
-    const URL = "https://back-project-topfurniture.herokuapp.com/cart";
-    const promise = axios.post(URL, body);
-    promise.then(() => {
-      alert("Compra realizada");
-    });
+    // const URL = "https://back-project-topfurniture.herokuapp.com/cart";
+    // const promise = axios.post(URL, body);
+    // promise.then(() => {
+    //   alert("Compra realizada");
+    // });
+    setCode(codigo)
+    Navigate('/success')
   }
 
   return (
